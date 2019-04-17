@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.fragments.PostFragment">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#212121" app:cardElevation="8dp" android:id="@+id/fragment_title_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#bdbdbd"
+                    android:id="@+id/title_author" tools:text="Author" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_body" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/title_author"
+                    app:layout_constraintTop_toBottomOf="@+id/title_author" tools:text="Body" android:textSize="18sp"
+                    android:textStyle="bold" android:layout_marginTop="8dp" android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                    android:textColor="#e0e0e0"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_replies_amount" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_body" tools:text="Replies"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ff5722"
+                    android:id="@+id/title_up_votes" app:layout_constraintStart_toEndOf="@+id/title_replies_amount"
+                    android:layout_marginLeft="24dp" android:layout_marginStart="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent" tools:text="UpVotes"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/recycler_view"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_title_layout"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
