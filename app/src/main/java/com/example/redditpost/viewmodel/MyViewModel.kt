@@ -1,10 +1,10 @@
-package com.example.randroiddev.viewmodel
+package com.example.redditpost.viewmodel
 
 import android.app.Application
 import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
-import com.example.randroiddev.model.Repository
+import com.example.redditpost.model.Repository
 
 class MyViewModel(application: Application) : AndroidViewModel(application) {
 

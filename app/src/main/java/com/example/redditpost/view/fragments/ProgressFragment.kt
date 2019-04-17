@@ -1,4 +1,4 @@
-package com.example.randroiddev.view.fragments
+package com.example.redditpost.view.fragments
 
 
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.randroiddev.R
+import com.example.redditpost.R
 
 
 class ProgressFragment : Fragment() {

@@ -1,6 +1,6 @@
-package com.example.randroiddev.model.remote.request
+package com.example.redditpost.model.remote.request
 
-import com.example.randroiddev.model.remote.response.PostData
+import com.example.redditpost.model.remote.response.PostData
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit

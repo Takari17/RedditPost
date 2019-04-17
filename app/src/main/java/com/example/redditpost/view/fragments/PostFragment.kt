@@ -1,4 +1,4 @@
-package com.example.randroiddev.view.fragments
+package com.example.redditpost.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.randroiddev.R
-import com.example.randroiddev.model.remote.response.*
-import com.example.randroiddev.view.Adapter
-import com.example.randroiddev.viewmodel.MyViewModel
+import com.example.redditpost.R
+import com.example.redditpost.model.remote.response.*
+import com.example.redditpost.view.Adapter
+import com.example.redditpost.viewmodel.MyViewModel
 import kotlinx.android.synthetic.main.fragment_post.*
 
 class PostFragment : Fragment() {

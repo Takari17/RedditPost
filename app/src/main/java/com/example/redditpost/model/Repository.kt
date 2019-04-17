@@ -1,6 +1,6 @@
-package com.example.randroiddev.model
+package com.example.redditpost.model
 
-import com.example.randroiddev.model.remote.request.RequestData
+import com.example.redditpost.model.remote.request.RequestData
 
 class Repository {
 

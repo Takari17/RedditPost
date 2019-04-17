@@ -1,11 +1,11 @@
-package com.example.randroiddev.view
+package com.example.redditpost.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.randroiddev.R
-import com.example.randroiddev.model.remote.response.*
+import com.example.redditpost.R
+import com.example.redditpost.model.remote.response.*
 import kotlinx.android.synthetic.main.comment_layout.view.*
 
 class Adapter(private val postData: List<PostData>) : RecyclerView.Adapter<Adapter.MyViewHolder>() {

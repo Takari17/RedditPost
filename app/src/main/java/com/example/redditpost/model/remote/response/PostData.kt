@@ -1,4 +1,4 @@
-package com.example.randroiddev.model.remote.response
+package com.example.redditpost.model.remote.response
 
 import com.google.gson.annotations.SerializedName
 

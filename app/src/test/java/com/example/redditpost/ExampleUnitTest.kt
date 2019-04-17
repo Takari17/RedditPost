@@ -1,4 +1,4 @@
-package com.example.randroiddev
+package com.example.redditpost
 
 import org.junit.Test
 

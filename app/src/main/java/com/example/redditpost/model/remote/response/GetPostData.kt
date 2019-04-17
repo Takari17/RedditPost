@@ -1,4 +1,4 @@
-package com.example.randroiddev.model.remote.response
+package com.example.redditpost.model.remote.response
 
 // With "zeroOrOne",  0 = title,  1 = comments.
 fun List<PostData>.getAuthor(zeroOrOne: Int, index: Int = 0) = this[zeroOrOne].data.children[index].data.author

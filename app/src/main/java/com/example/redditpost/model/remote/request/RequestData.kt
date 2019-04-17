@@ -1,7 +1,7 @@
-package com.example.randroiddev.model.remote.request
+package com.example.redditpost.model.remote.request
 
 import androidx.lifecycle.MutableLiveData
-import com.example.randroiddev.model.remote.response.PostData
+import com.example.redditpost.model.remote.response.PostData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
