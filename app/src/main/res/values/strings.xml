@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">r/Android Dev</string>
+    <string name="app_name">Reddit Post</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="userName">Posted by u/%1$s</string>
+
+    <string name="repliesAmount">%1$s Replies</string>
+
+    <string name="upvoteAmount">%1$s UpVotes</string>
+
 </resources>

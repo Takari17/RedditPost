@@ -1,5 +1,6 @@
-package com.example.redditpost.view.fragments
+package com.example.redditpost.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +10,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.redditpost.R
-import com.example.redditpost.model.remote.response.*
-import com.example.redditpost.view.Adapter
-import com.example.redditpost.viewmodel.MyViewModel
+import com.example.redditpost.data.remote.PostData
+import com.example.redditpost.ui.Adapter
+import com.example.redditpost.utils.getRepliesAmount
+import com.example.redditpost.utils.getTitleAuthor
+import com.example.redditpost.utils.getTitleText
+import com.example.redditpost.utils.getTitleUpVotes
+import com.example.redditpost.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_post.*
 
 class PostFragment : Fragment() {
 
-    private lateinit var viewModel: MyViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -28,19 +33,14 @@ class PostFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(activity!!).get(MyViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
-        viewModel.getNetworkCallLiveData().observe(viewLifecycleOwner, observeNetworkCall())
-    }
-
-    private fun observeNetworkCall(): Observer<List<PostData>> {
-        return Observer { postData ->
-
+        viewModel.redditPostData.observe(viewLifecycleOwner, Observer { postData ->
             populateRecyclerView(postData)
-
-            populateTitleViews(postData)
-        }
+            populateTitleViews(postData, activity!!)
+        })
     }
+
 
     private fun populateRecyclerView(postData: List<PostData>) {
         recycler_view.apply {
@@ -50,10 +50,10 @@ class PostFragment : Fragment() {
         }
     }
 
-    private fun populateTitleViews(postData: List<PostData>) {
-        title_author.text = "Posted by u/${postData.getAuthor(0)}"
+    private fun populateTitleViews(postData: List<PostData>, context: Context) {
+        title_author.text = context.getString(R.string.userName, postData.getTitleAuthor())
         title_body.text = postData.getTitleText()
-        title_replies_amount.text = "${postData.getRepliesAmount()} Replies"
-        title_up_votes.text = "${postData.getTitleUpVotes()} UpVotes"
+        title_replies_amount.text = context.getString(R.string.repliesAmount, postData.getRepliesAmount())
+        title_up_votes.text = context.getString(R.string.upvoteAmount, postData.getTitleUpVotes())
     }
 }

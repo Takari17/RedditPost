@@ -1,11 +1,13 @@
-package com.example.redditpost.view
+package com.example.redditpost.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redditpost.R
-import com.example.redditpost.model.remote.response.*
+import com.example.redditpost.data.remote.PostData
+import com.example.redditpost.utils.*
 import kotlinx.android.synthetic.main.comment_layout.view.*
 
 class Adapter(private val postData: List<PostData>) : RecyclerView.Adapter<Adapter.MyViewHolder>() {
@@ -19,15 +21,15 @@ class Adapter(private val postData: List<PostData>) : RecyclerView.Adapter<Adapt
 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.author.text = postData.getAuthor(1, position)
+        holder.author.text = postData.getCommentAuthor(position)
         holder.body.text = postData.getCommentText(position)
         holder.upVotes.text = postData.getCommentUpVotes(position).toString()
     }
 
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val author = itemView.comment_author
-        val body = itemView.comment_body
-        val upVotes = itemView.comment_up_votes
+        val author: TextView = itemView.comment_author
+        val body: TextView = itemView.comment_body
+        val upVotes: TextView = itemView.comment_up_votes
     }
 }

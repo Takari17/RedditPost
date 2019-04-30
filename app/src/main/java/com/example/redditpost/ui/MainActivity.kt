@@ -1,46 +1,46 @@
-package com.example.redditpost.view
+package com.example.redditpost.ui
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.redditpost.view.fragments.FailedFragment
-import com.example.redditpost.view.fragments.PostFragment
-import com.example.redditpost.view.fragments.ProgressFragment
-import com.example.redditpost.viewmodel.MyViewModel
-import kotlinx.android.synthetic.main.fragment_progress.*
+import com.example.redditpost.ui.fragments.FailedFragment
+import com.example.redditpost.ui.fragments.PostFragment
+import com.example.redditpost.ui.fragments.ProgressFragment
+import com.example.redditpost.viewmodel.MainViewModel
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MyViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.redditpost.R.layout.activity_main)
 
-        addProgressFragment() // Shows progress bar immediately on start, will change after Network Call
+        addProgressBarFragment() // Shows progress bar immediately on start, will change after Network Call
 
-        viewModel = ViewModelProviders.of(this).get(MyViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        viewModel.getShowPostFragment().observe(this, getObserver())
+        viewModel.networkCallSuccess.observe(this, Observer { success ->
+            if (success) addPostFragment() else addFailedFragment()
+        })
 
         viewModel.executeNetworkCall()
     }
 
-    private fun addProgressFragment() {
+    private fun addProgressBarFragment() {
         val progressFragment = ProgressFragment()
         replaceContainer(progressFragment)
     }
 
-    private fun addCommentFragment() {
-        val commentFragment = PostFragment()
-        replaceContainer(commentFragment)
+    private fun addPostFragment() {
+        val postFragment = PostFragment()
+        replaceContainer(postFragment)
     }
 
     private fun addFailedFragment() {
@@ -51,13 +51,6 @@ class MainActivity : AppCompatActivity() {
     private fun replaceContainer(fragment: Fragment) {
         supportFragmentManager.beginTransaction().add(com.example.redditpost.R.id.fragment_container, fragment)
             .commit()
-    }
-
-    private fun getObserver(): Observer<Boolean> {
-        return Observer { networkCallSuccess ->
-            progressBar.visibility = View.INVISIBLE
-            if (networkCallSuccess) addCommentFragment() else addFailedFragment()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
