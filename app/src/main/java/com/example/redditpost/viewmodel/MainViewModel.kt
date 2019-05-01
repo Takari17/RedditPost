@@ -11,14 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 
-/*
-Commit:
-Added caching with okhttp
 
-replaced coroutines to Rx stuff
-
-formatted code
- */
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = Repository(application)
