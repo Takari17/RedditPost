@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.redditpost.R
 import com.example.redditpost.ui.fragments.FailedFragment
 import com.example.redditpost.ui.fragments.PostFragment
 import com.example.redditpost.ui.fragments.ProgressFragment
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.redditpost.R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
         addProgressBarFragment() // Shows progress bar immediately on start, will change after Network Call
 
@@ -49,13 +50,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceContainer(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().add(com.example.redditpost.R.id.fragment_container, fragment)
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
             .commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = MenuInflater(this)
-        inflater.inflate(com.example.redditpost.R.menu.my_menu, menu)
+        inflater.inflate(R.menu.my_menu, menu)
         return true
     }
 

@@ -30,8 +30,8 @@ class PostFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_post, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
@@ -40,7 +40,6 @@ class PostFragment : Fragment() {
             populateTitleViews(postData, activity!!)
         })
     }
-
 
     private fun populateRecyclerView(postData: List<PostData>) {
         recycler_view.apply {

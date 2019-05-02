@@ -11,7 +11,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 
-
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = Repository(application)
