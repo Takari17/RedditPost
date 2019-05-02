@@ -25,7 +25,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     redditPostData.postValue(postData)
                     networkCallSuccess.postValue(true)
                 },
-                onError = { networkCallSuccess.postValue(true) }
+                onError = { networkCallSuccess.postValue(false) }
             )
     }
 
