@@ -9,4 +9,6 @@
 
     <string name="noConnection">No Connection ;(</string>
 
+    <string name="openingPost">Opening Post…</string>
+
 </resources>

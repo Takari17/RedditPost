@@ -1,12 +1,15 @@
 package com.example.redditpost.ui.feature.redditpost
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.redditpost.R
 import com.example.redditpost.data.Repository
 import com.example.redditpost.data.remote.RedditApi
 import com.example.redditpost.data.remote.RedditResponse
@@ -33,12 +36,12 @@ class RedditPostViewModel(application: Application) : AndroidViewModel(applicati
                 }
             )
 
-    fun openRedditPost() {
-        val browserIntent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse(Url.FULL_URL.text)
-        )
+    fun openRedditPostWithToast() {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(Url.FULL_URL.text)).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
         getApplication<Application>().startActivity(browserIntent)
+        Toast.makeText(getApplication(), R.string.openingPost, Toast.LENGTH_SHORT).show()
     }
 
     fun getRedditPostResponse(): LiveData<List<RedditResponse>> = redditPostResponse

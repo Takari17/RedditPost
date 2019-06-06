@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        viewModel.openRedditPost()
+        viewModel.openRedditPostWithToast()
         return true
     }
 }
