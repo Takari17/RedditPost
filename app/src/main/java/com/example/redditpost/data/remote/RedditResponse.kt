@@ -2,11 +2,11 @@ package com.example.redditpost.data.remote
 
 import com.google.gson.annotations.SerializedName
 
-data class PostData(val `data`: Users)
+data class RedditResponse(val `data`: UserList)
 
-data class Users(val children: List<Children>)
+data class UserList(val children: List<User>)
 
-data class Children(val `data`: UserData)
+data class User(val `data`: UserData)
 
 data class UserData(
 
