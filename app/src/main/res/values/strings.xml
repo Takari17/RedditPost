@@ -7,4 +7,6 @@
 
     <string name="upvoteAmount">%1$s UpVotes</string>
 
+    <string name="noConnection">No Connection ;(</string>
+
 </resources>
