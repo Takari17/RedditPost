@@ -1,4 +1,4 @@
-package com.example.redditpost.ui.fragments
+package com.example.redditpost.ui.feature.redditpost
 
 import android.content.Context
 import android.os.Bundle
@@ -6,22 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.redditpost.R
-import com.example.redditpost.data.remote.PostData
-import com.example.redditpost.ui.Adapter
+import com.example.redditpost.data.remote.RedditResponse
 import com.example.redditpost.utils.getRepliesAmount
 import com.example.redditpost.utils.getTitleAuthor
 import com.example.redditpost.utils.getTitleText
 import com.example.redditpost.utils.getTitleUpVotes
-import com.example.redditpost.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_post.*
 
-class PostFragment : Fragment() {
+class RedditPostFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by activityViewModels<RedditPostViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,23 +31,21 @@ class PostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
-
-        viewModel.redditPostData.observe(viewLifecycleOwner, Observer { postData ->
+        viewModel.getRedditPostResponse().observe(viewLifecycleOwner, Observer { postData ->
             populateRecyclerView(postData)
             populateTitleViews(postData, activity!!)
         })
     }
 
-    private fun populateRecyclerView(postData: List<PostData>) {
+    private fun populateRecyclerView(postData: List<RedditResponse>) {
         recycler_view.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = Adapter(postData)
+            adapter = RedditPostAdapter(postData)
         }
     }
 
-    private fun populateTitleViews(postData: List<PostData>, context: Context) {
+    private fun populateTitleViews(postData: List<RedditResponse>, context: Context) {
         title_author.text = context.getString(R.string.userName, postData.getTitleAuthor())
         title_body.text = postData.getTitleText()
         title_replies_amount.text = context.getString(R.string.repliesAmount, postData.getRepliesAmount())

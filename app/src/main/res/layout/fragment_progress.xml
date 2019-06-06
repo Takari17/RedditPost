@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.ProgressFragment" android:id="@+id/frameLayout">
+        tools:context=".ui.feature.common.ProgressFragment" android:id="@+id/frameLayout">
 
     <ProgressBar
             style="?android:attr/progressBarStyle"

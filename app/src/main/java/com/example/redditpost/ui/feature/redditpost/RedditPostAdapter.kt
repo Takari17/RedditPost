@@ -1,4 +1,4 @@
-package com.example.redditpost.ui
+package com.example.redditpost.ui.feature.redditpost
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redditpost.R
-import com.example.redditpost.data.remote.PostData
-import com.example.redditpost.utils.*
+import com.example.redditpost.data.remote.RedditResponse
+import com.example.redditpost.utils.getCommentAmount
+import com.example.redditpost.utils.getCommentAuthor
+import com.example.redditpost.utils.getCommentText
+import com.example.redditpost.utils.getCommentUpVotes
 import kotlinx.android.synthetic.main.comment_layout.view.*
 
-class Adapter(private val postData: List<PostData>) : RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class RedditPostAdapter(private val postData: List<RedditResponse>) :
+    RecyclerView.Adapter<RedditPostAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.comment_layout, parent, false)
@@ -19,11 +23,12 @@ class Adapter(private val postData: List<PostData>) : RecyclerView.Adapter<Adapt
 
     override fun getItemCount(): Int = postData.getCommentAmount()
 
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.author.text = postData.getCommentAuthor(position)
-        holder.body.text = postData.getCommentText(position)
-        holder.upVotes.text = postData.getCommentUpVotes(position).toString()
+        holder.apply {
+            author.text = postData.getCommentAuthor(position)
+            body.text = postData.getCommentText(position)
+            upVotes.text = postData.getCommentUpVotes(position)
+        }
     }
 
 
