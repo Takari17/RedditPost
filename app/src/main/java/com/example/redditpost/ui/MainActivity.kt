@@ -4,20 +4,20 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.redditpost.R
-import com.example.redditpost.ui.fragments.FailedFragment
-import com.example.redditpost.ui.fragments.PostFragment
-import com.example.redditpost.ui.fragments.ProgressFragment
-import com.example.redditpost.viewmodel.MainViewModel
+import com.example.redditpost.ui.feature.redditpost.RedditPostFragment
+import com.example.redditpost.ui.feature.redditpost.RedditPostViewModel
+import com.example.redditpost.ui.feature.common.FailedFragment
+import com.example.redditpost.ui.feature.common.ProgressFragment
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel by viewModels<RedditPostViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,38 +25,34 @@ class MainActivity : AppCompatActivity() {
 
         addProgressBarFragment() // Shows progress bar immediately on start, will change after Network Call
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-
-        viewModel.networkCallSuccess.observe(this, Observer { success ->
-            if (success) addPostFragment() else addFailedFragment()
+        viewModel.getNetworkCallSuccess().observe(this, Observer { success ->
+            if (success) addRedditPostFragment() else addFailedFragment()
         })
 
         viewModel.executeNetworkCall()
     }
 
-    private fun addProgressBarFragment() {
-        val progressFragment = ProgressFragment()
-        replaceContainer(progressFragment)
-    }
+    private fun addProgressBarFragment() =
+        replaceContainer(ProgressFragment())
 
-    private fun addPostFragment() {
-        val postFragment = PostFragment()
-        replaceContainer(postFragment)
-    }
 
-    private fun addFailedFragment() {
-        val failedFragment = FailedFragment()
-        replaceContainer(failedFragment)
-    }
+    private fun addRedditPostFragment() =
+        replaceContainer(RedditPostFragment())
 
-    private fun replaceContainer(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+
+    private fun addFailedFragment() =
+        replaceContainer(FailedFragment())
+
+
+    private fun replaceContainer(fragment: Fragment) =
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
             .commit()
-    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = MenuInflater(this)
-        inflater.inflate(R.menu.my_menu, menu)
+        MenuInflater(this).inflate(R.menu.my_menu, menu)
         return true
     }
 
