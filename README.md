@@ -6,6 +6,8 @@ primarily taught me how to navigate through an extensize list of JSON data and f
   <img src= "images/screenshot1.jpg" width="250" />
   <img src= "images/screenshot2.jpg" width="250" /> 
   <img src= "images/screenshot3.jpg" width="250" /> 
+  <img src= "images/screenshot4.jpg" width="250" /> 
+  
 </p>
 
 ## Installing
