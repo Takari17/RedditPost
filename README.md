@@ -21,4 +21,4 @@ You can then install from android studio.
 * Lifecycle Libraries
 
 ## Contributing 
-If you wish to contribute to this project email me first at takariharrison@gmail.com
+Add anything you want, maybe I'll learn something from it!
