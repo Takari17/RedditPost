@@ -3,8 +3,8 @@ package com.example.redditpost.data
 import com.example.redditpost.data.remote.RedditApi
 import io.reactivex.schedulers.Schedulers
 
-class Repository(redditApi: RedditApi) {
+class Repository(private val redditApi: RedditApi) {
 
-    val getAllPostData = redditApi.getAllPostData()
+    fun getAllPostData() = redditApi.getAllPostData()
         .subscribeOn(Schedulers.io())
 }

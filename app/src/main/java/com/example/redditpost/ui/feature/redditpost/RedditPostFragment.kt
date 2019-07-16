@@ -6,35 +6,47 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.redditpost.R
+import com.example.redditpost.data.Repository
+import com.example.redditpost.data.remote.RedditApi
 import com.example.redditpost.data.remote.RedditResponse
-import com.example.redditpost.utils.getRepliesAmount
-import com.example.redditpost.utils.getTitleAuthor
-import com.example.redditpost.utils.getTitleText
-import com.example.redditpost.utils.getTitleUpVotes
-import kotlinx.android.synthetic.main.fragment_post.*
+import com.example.redditpost.utils.*
+import kotlinx.android.synthetic.main.reddit_post_fragment.*
+
 
 class RedditPostFragment : Fragment() {
 
-    private val viewModel by activityViewModels<RedditPostViewModel>()
+    private val viewModel by activityViewModelFactory {
+        RedditPostViewModel(activity?.application!!, Repository(RedditApi.invoke()))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_post, container, false)
-    }
+    ): View? = inflater.inflate(R.layout.reddit_post_fragment, container, false)
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getRedditPostResponse().observe(viewLifecycleOwner, Observer { postData ->
+            makeViewsVisible()
+            makeProgressBarInvisible()
             populateRecyclerView(postData)
             populateTitleViews(postData, activity!!)
         })
+
+        viewModel.getRedditPostData()
+    }
+
+    private fun makeViewsVisible(){
+        fragment_title_layout.visibility = View.VISIBLE
+        recycler_view.visibility = View.VISIBLE
+    }
+
+    private fun makeProgressBarInvisible(){
+        progressBar.visibility = View.VISIBLE
     }
 
     private fun populateRecyclerView(postData: List<RedditResponse>) {
