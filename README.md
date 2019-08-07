@@ -1,6 +1,5 @@
 # Reddit Post
-Reddit Post fetches data from a popular post on r/androiddev and displays it in a recycler view accordingly. This project
-primarily taught me how to navigate through an extensive list of JSON data to fetch the specific data you want. 
+Fetches data from a helpful post on the android dev subreddit and displays the data in a recycler view accordingly.
 
 <p float="left">
   <img src= "images/screenshot1.jpg" width="250" />
@@ -19,6 +18,3 @@ You can then install from android studio.
 * RxJava 
 * Retrofit
 * Lifecycle Libraries
-
-## Contributing 
-Add anything you want, maybe I'll learn something from it!
